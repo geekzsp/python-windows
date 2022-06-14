@@ -70,7 +70,7 @@ RUN set -x \
     && cp "$W_TMP"/*.dll "$W_SYSTEM64_DLLS"/
 
 # install pyinstaller
-RUN /usr/bin/pip install pyinstaller==$PYINSTALLER_VERSION
+#RUN /usr/bin/pip install pyinstaller==$PYINSTALLER_VERSION
 
 # put the src folder inside wine
 RUN mkdir /src/ && ln -s /src /wine/drive_c/src
