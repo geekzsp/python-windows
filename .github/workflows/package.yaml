@@ -19,10 +19,7 @@ jobs:
       - name: package
         run: |
             docker run -v "$(pwd):/src/"  geekzsp/python-windows
-      - name: Push
-        run: |
-          docker push geekzsp/python-windows
       - uses: actions/upload-artifact@v2
         with:
-          name: name-of-artifact
+          name: deps
           path: packagesdir
