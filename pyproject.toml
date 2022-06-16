@@ -6,6 +6,8 @@ authors = ["moss <geekzsp@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pandas = "^1.4.2"
+openpyxl = "^3.0.10"
 
 [tool.poetry.dev-dependencies]
 
