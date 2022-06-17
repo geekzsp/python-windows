@@ -1,1 +1,1 @@
-dddocr==1.4.3
+ddddocr==1.4.3
