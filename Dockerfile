@@ -2,9 +2,9 @@ FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG WINE_VERSION=winehq-staging
-ARG PYTHON_VERSION=3.7.5
-ARG PYINSTALLER_VERSION=3.6
+ARG WINE_VERSION=winehq-stable
+ARG PYTHON_VERSION=3.8.10
+ARG PYINSTALLER_VERSION=4.9
 
 # we need wine for this all to work, so we'll use the PPA
 RUN set -x \
@@ -37,15 +37,15 @@ RUN set -x \
     && winetricks win7 \
     && for msifile in `echo core dev exe lib path pip tcltk tools`; do \
         wget -nv "https://www.python.org/ftp/python/$PYTHON_VERSION/amd64/${msifile}.msi"; \
-        wine msiexec /i "${msifile}.msi" /qb TARGETDIR=C:/Python37; \
+        wine msiexec /i "${msifile}.msi" /qb TARGETDIR=C:/Python38; \
         rm ${msifile}.msi; \
     done \
-    && cd /wine/drive_c/Python37 \
-    && echo 'wine '\''C:\Python37\python.exe'\'' "$@"' > /usr/bin/python \
-    && echo 'wine '\''C:\Python37\Scripts\easy_install.exe'\'' "$@"' > /usr/bin/easy_install \
-    && echo 'wine '\''C:\Python37\Scripts\pip.exe'\'' "$@"' > /usr/bin/pip \
-    && echo 'wine '\''C:\Python37\Scripts\pyinstaller.exe'\'' "$@"' > /usr/bin/pyinstaller \
-    && echo 'wine '\''C:\Python37\Scripts\pyupdater.exe'\'' "$@"' > /usr/bin/pyupdater \
+    && cd /wine/drive_c/Python38 \
+    && echo 'wine '\''C:\Python38\python.exe'\'' "$@"' > /usr/bin/python \
+    && echo 'wine '\''C:\Python38\Scripts\easy_install.exe'\'' "$@"' > /usr/bin/easy_install \
+    && echo 'wine '\''C:\Python38\Scripts\pip.exe'\'' "$@"' > /usr/bin/pip \
+    && echo 'wine '\''C:\Python38\Scripts\pyinstaller.exe'\'' "$@"' > /usr/bin/pyinstaller \
+    && echo 'wine '\''C:\Python38\Scripts\pyupdater.exe'\'' "$@"' > /usr/bin/pyupdater \
     && echo 'assoc .py=PythonScript' | wine cmd \
     && echo 'ftype PythonScript=c:\Python37\python.exe "%1" %*' | wine cmd \
     && while pgrep wineserver >/dev/null; do echo "Waiting for wineserver"; sleep 1; done \
@@ -70,7 +70,7 @@ RUN set -x \
     && cp "$W_TMP"/*.dll "$W_SYSTEM64_DLLS"/
 
 # install pyinstaller
-#RUN /usr/bin/pip install pyinstaller==$PYINSTALLER_VERSION
+RUN /usr/bin/pip install pyinstaller==$PYINSTALLER_VERSION
 
 # put the src folder inside wine
 RUN mkdir /src/ && ln -s /src /wine/drive_c/src
