@@ -71,7 +71,7 @@ RUN set -x \
 
 RUN curl -sSL https://install.python-poetry.org | python -
 # install pyinstaller
-RUN /usr/bin/pip install pyinstaller==$PYINSTALLER_VERSION
+# RUN /usr/bin/pip install pyinstaller==$PYINSTALLER_VERSION
 
 
 
