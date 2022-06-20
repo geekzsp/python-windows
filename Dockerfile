@@ -67,10 +67,13 @@ RUN set -x \
     && cabextract -q --directory="$W_TMP" "$W_TMP/a11" \
     && cd "$W_TMP" \
     && rename 's/_/\-/g' *.dll \
-    && cp "$W_TMP"/*.dll "$W_SYSTEM64_DLLS" \
-    && curl -sSL https://install.python-poetry.org | python /
+    && cp "$W_TMP"/*.dll "$W_SYSTEM64_DLLS"/
+
+RUN curl -sSL https://install.python-poetry.org | python -
 # install pyinstaller
 RUN /usr/bin/pip install pyinstaller==$PYINSTALLER_VERSION
+
+
 
 # put the src folder inside wine
 RUN mkdir /src/ && ln -s /src /wine/drive_c/src
