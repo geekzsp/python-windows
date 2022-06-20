@@ -33,6 +33,7 @@ cd $WORKDIR
 
 if [ -f requirements.txt ]; then
     if [ -f pyproject.toml ]; then
+       curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
        poetry export -f requirements.txt --output requirements.txt  --without-hashes
     fi
     pip download -d  ./packagesdir -r requirements.txt
