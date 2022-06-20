@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: package
         run: |
-            docker run -v "$(pwd):/src/"  geekzsp/python-windows
+            docker run -v "$(pwd):/src/"  geekzsp/python-windows:poetry
       - uses: actions/upload-artifact@v2
         with:
           name: deps
