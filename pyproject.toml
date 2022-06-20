@@ -6,9 +6,7 @@ authors = ["moss <geekzsp@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "3.7.5"
-pandas = "^1.4.2"
-openpyxl = "^3.0.10"
-dddocr='^1.4.3 '
+ddddocr='^1.4.3'
 
 [tool.poetry.dev-dependencies]
 
