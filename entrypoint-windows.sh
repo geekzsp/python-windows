@@ -32,6 +32,9 @@ fi
 cd $WORKDIR
 
 if [ -f requirements.txt ]; then
+    if [ -f pyproject.toml ]; then
+       poetry export -f requirements.txt --output requirements.txt  --without-hashes
+    fi
     pip download -d  ./packagesdir -r requirements.txt
 fi # [ -f requirements.txt ]
 
