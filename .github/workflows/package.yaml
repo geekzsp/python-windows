@@ -5,9 +5,9 @@ name: package
 
 on:
   push:
-    branches: [ master ]
+    branches: [ python-windows-3.8 ]
   pull_request:
-    branches: [ master ]
+    branches: [ python-windows-3.8 ]
 
 jobs:
   build:
