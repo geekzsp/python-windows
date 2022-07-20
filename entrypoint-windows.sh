@@ -39,7 +39,7 @@ echo "$@"
 
 if [[ "$@" == "" ]]; then
 #    pyinstaller --clean -y --dist ./dist/windows --workpath /tmp *.spec
-    pyinstaller main.py --dist ./dist/windows --name counter --noconsole --noconfirm --onefile
+    pyinstaller main.py --dist ./dist/windows --name counter --noconsole --noconfirm --onefile --icon icon.png
     chown -R --reference=. ./dist/windows
 else
     sh -c "$@"
