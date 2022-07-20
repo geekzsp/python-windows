@@ -5,9 +5,9 @@ name: Build Image
 
 on:
   push:
-    branches: [ master ]
+    branches: [ python-windows-3.9 ]
   pull_request:
-    branches: [ master ]
+    branches: [ python-windows-3.9 ]
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: build
         run: |
-            docker build -t geekzsp/python-windows .
+          docker build -t geekzsp/python-windows-3.9 .
       - name: Push
         run: |
-          docker push geekzsp/python-windows
+          docker push geekzsp/python-windows-3.9
