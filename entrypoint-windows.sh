@@ -32,15 +32,15 @@ fi
 cd $WORKDIR
 
 if [ -f requirements.txt ]; then
-    pip download -d  ./packagesdir -r requirements.txt
+    pip install -r requirements.txt
 fi # [ -f requirements.txt ]
 
-# echo "$@"
+echo "$@"
 
-# if [[ "$@" == "" ]]; then
-#     pyinstaller --clean -y --dist ./dist/windows --workpath /tmp *.spec
-#     chown -R --reference=. ./dist/windows
-# else
-#     sh -c "$@"
-# fi # [[ "$@" == "" ]]
+if [[ "$@" == "" ]]; then
+    pyinstaller --clean -y --dist ./dist/windows --workpath /tmp *.spec
+    chown -R --reference=. ./dist/windows
+else
+    sh -c "$@"
+fi # [[ "$@" == "" ]]
 
