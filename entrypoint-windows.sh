@@ -9,7 +9,17 @@ set -e
 # Allow the workdir to be set using an env var.
 # Useful for CI pipiles which use docker for their build steps
 # and don't allow that much flexibility to mount volumes
+SRCDIR=$1
+
+PYPI_URL=$2
+
+PYPI_INDEX_URL=$3
+
 WORKDIR=${SRCDIR:-/src}
+
+SPEC_FILE=${4:-*.spec}
+
+python -m pip install --upgrade pip wheel setuptools
 
 #
 # In case the user specified a custom URL for PYPI, then use
@@ -31,16 +41,15 @@ fi
 
 cd $WORKDIR
 
-if [ -f requirements.txt ]; then
-    pip install -r requirements.txt
-fi # [ -f requirements.txt ]
+if [ -f $5 ]; then
+    pip install -r $5
+fi # [ -f $5 ]
 
-echo "$@"
 
-if [[ "$@" == "" ]]; then
-#    pyinstaller --clean -y --dist ./dist/windows --workpath /tmp *.spec
-    pyinstaller main.py --dist ./dist/windows --name counter --noconsole --noconfirm --onefile --icon logo.png
-    chown -R --reference=. ./dist/windows
-else
-    sh -c "$@"
-fi # [[ "$@" == "" ]]
+
+# if [[ "$@" == "" ]]; then
+pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
+chown -R --reference=. ./dist/windows
+# else
+    # sh -c "$@"
+# fi # [[ "$@" == "" ]]

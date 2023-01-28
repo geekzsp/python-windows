@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: build
         run: |
-          docker build -t geekzsp/python-windows-3.9:logo .
+          docker build -t geekzsp/python-windows-3.9.6-pyinstaller-5.7.0 .
       - name: Push
         run: |
-          docker push geekzsp/python-windows-3.9:logo
+          docker push geekzsp/python-windows-3.9.6-pyinstaller-5.7.0

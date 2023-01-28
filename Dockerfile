@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ARG WINE_VERSION=winehq-staging
 ARG PYTHON_VERSION=3.9.6
-ARG PYINSTALLER_VERSION=5.2
+ARG PYINSTALLER_VERSION=5.7.0
 
 # we need wine for this all to work, so we'll use the PPA
 RUN set -x \
