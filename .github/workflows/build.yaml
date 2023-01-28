@@ -5,9 +5,9 @@ name: Build Image
 
 on:
   push:
-    branches: *
+    branches: [ python-windows-3.9-new ]
   pull_request:
-    branches: *
+    branches: [ python-windows-3.9-new ]
 
 jobs:
   build:
